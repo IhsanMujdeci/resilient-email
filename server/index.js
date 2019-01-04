@@ -6,7 +6,7 @@ async function main () {
     try {
         server.applyConfig(app);
         routes.mount(app);
-        await server.listen(app, process.env.PORT || 3000);
+        await server.listen(app, process.env.PORT || 3001);
     } catch (err) {
         console.log(err);
     }
