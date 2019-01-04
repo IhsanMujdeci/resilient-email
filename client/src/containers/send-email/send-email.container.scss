@@ -11,10 +11,15 @@
 }
 
 .email-form__group{
-  margin: 20px;
+  margin: 20px 20px 0 20px;
   >.text-field{
     margin-bottom: 10px;
   }
+  transition: all 250ms !important;
+}
+
+.email-form__multiline-text {
+  height: 350px;
 }
 
 .email-form__to-field {
@@ -28,6 +33,7 @@
 .email-form__submit {
   width: fit-content;
   min-width: 100px !important;
+  margin-top: 20px !important;
   margin-bottom: 30px !important;
   margin-left: 20px !important;
 }
@@ -42,4 +48,15 @@
 }
 .email-form__bcc {
   cursor: pointer;
+}
+
+.email-form--show {
+  max-height: 1000px !important;
+  margin: 20px 20px 0 20px;
+}
+
+.email-form--hide {
+  max-height: 0 !important;
+  overflow-x: hidden;
+  margin: 0 20px
 }

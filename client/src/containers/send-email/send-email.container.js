@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from "@material-ui/core/Button/Button";
 import ChipInput from 'material-ui-chip-input'
+import classNames from  'classnames'
 
 class SendEmail extends Component {
 
@@ -19,6 +20,19 @@ class SendEmail extends Component {
             showCc: false,
             showBcc: false
         }
+
+        this.emailCc= classNames({
+            'email-form--show': this.state.isPressed,
+            'email-form--hide': !this.state.isPressed && this.state.isHovered
+        });
+
+        this.emailBccClass= classNames(
+            'email-form__group',
+            {
+                'email-form--show': !this.state.showBcc,
+                'email-form--hide': this.state.showBcc
+            }
+        );
     }
 
     handleAddChip = (chip) => {
@@ -36,6 +50,8 @@ class SendEmail extends Component {
     showBcc = () => {
         this.setState({showBcc: true})
     };
+
+
 
     render(){
 
@@ -78,7 +94,13 @@ class SendEmail extends Component {
                     </FormGroup>
 
 
-                    {this.state.showCc && <FormGroup className='email-form__group'>
+                    <FormGroup className={classNames(
+                        'email-form__group',
+                        {
+                            'email-form--show': this.state.showCc,
+                            'email-form--hide': !this.state.showCc
+                        }
+                    )}>
                         <ChipInput
                             value={this.yourChips}
                             onAdd={this.handleAddChip}
@@ -89,10 +111,16 @@ class SendEmail extends Component {
                             label='Cc'
                             fullWidthInput={true}
                         />
-                    </FormGroup>}
+                    </FormGroup>
 
 
-                    {this.state.showBcc && <FormGroup className='email-form__group'>
+                    <FormGroup className={classNames(
+                        'email-form__group',
+                        {
+                            'email-form--show': this.state.showBcc,
+                            'email-form--hide': !this.state.showBcc
+                        }
+                    )}>
                         <ChipInput
                             value={this.yourChips}
                             onAdd={this.handleAddChip}
@@ -103,14 +131,19 @@ class SendEmail extends Component {
                             label='Bcc'
                             fullWidthInput={true}
                         />
-                    </FormGroup>}
+                    </FormGroup>
 
                     <FormGroup className='email-form__group'>
                         <TextField variant='outlined' label='Subject' className='text-field'/>
                     </FormGroup>
 
-                    <FormGroup className='email-form__group'>
-                        <TextField variant='outlined' label='Body' className='text-field'/>
+                    <FormGroup className='email-form__group email-form__multiline-texts'>
+                        <TextField
+                            variant='outlined'
+                            rows={4}
+                            multiline
+                            label='Body'
+                            className='text-field'/>
                     </FormGroup>
 
                     <Button variant="contained" color="primary" className='email-form__submit'>
