@@ -16,6 +16,7 @@
     margin-bottom: 10px;
   }
   transition: all 250ms !important;
+  transition-timing-function: ease-in;
 }
 
 .email-form__multiline-text {
