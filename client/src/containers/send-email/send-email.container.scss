@@ -1,9 +1,12 @@
 .email-form {
   min-width: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .email-form__header {
-  background-color: #15149D;
+  background-color: #00968C;
   color: white;
 }
 
@@ -24,8 +27,18 @@
 
 .email-form__submit {
   width: fit-content;
+  margin-bottom: 30px !important;
+  margin-left: 20px !important;
 }
 
 .chip-input {
   height: 40px;
+}
+
+.email-form__cc {
+  padding: 0 5px;
+  cursor: pointer;
+}
+.email-form__bcc {
+  cursor: pointer;
 }

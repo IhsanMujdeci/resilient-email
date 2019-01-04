@@ -9,11 +9,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from "@material-ui/core/Button/Button";
 import ChipInput from 'material-ui-chip-input'
 
-
 class SendEmail extends Component {
 
-
-    yourChips = []
+    yourChips = [];
 
     handleAddChip = (chip) => {
         this.yourChips.push(chip)
@@ -38,13 +36,12 @@ class SendEmail extends Component {
                         <div className='email-form__to-field'>
                             <TextField variant='outlined' label='To' className='text-field'/>
 
-                            <Tooltip title="Add Cc recipients">
+                            <Tooltip title="Add Cc recipients" className="email-form__cc">
                                 <Typography variant={"body2"}>Cc</Typography>
                             </Tooltip>
-                            <Tooltip title="Add Bcc recipients">
+                            <Tooltip title="Add Bcc recipients" className="email-form__bcc">
                                 <Typography variant={"body2"}>Bcc</Typography>
                             </Tooltip>
-
                         </div>
                     </FormGroup>
 
@@ -80,13 +77,11 @@ class SendEmail extends Component {
 
                     <FormGroup className='email-form__group'>
                         <TextField variant='outlined' label='Body' className='text-field'/>
-
-                        <Button variant="contained" color="primary" className='email-form__submit'>
-                            Primary
-                        </Button>
                     </FormGroup>
 
-
+                    <Button variant="contained" color="primary" className='email-form__submit'>
+                        Primary
+                    </Button>
 
                 </Card>
             </>

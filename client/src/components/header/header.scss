@@ -7,11 +7,11 @@ $headerHeight: 65px;
 
 .cab-charge-gradient{
   background:#00968C;
-  background:-webkit-linear-gradient(-45deg,#00968C 0%,#10069F 100%);
-  background:-o-linear-gradient(-45deg,#00968C 0%,#10069F 100%);
-  background:-ms-linear-gradient(-45deg,#00968C 0%,#10069F 100%);
-  background:-moz-linear-gradient(-45deg,#00968C 0%,#10069F 100%);
-  background:linear-gradient(135deg,#00968C 0%,#10069F 100%);
+  background:-webkit-linear-gradient(45deg, #00968C 25%,#10069F 100%);
+  background:-o-linear-gradient(45deg, #00968C 25%,#10069F 100%);
+  background:-ms-linear-gradient(45deg, #00968C 25%,#10069F 100%);
+  background:-moz-linear-gradient(45deg, #00968C 25%,#10069F 100%);
+  //background:linear-gradient(135deg,#00968C 0%,#10069F 100%);
 }
 
 .cab-charge-logo{
