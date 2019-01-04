@@ -13,12 +13,28 @@ class SendEmail extends Component {
 
     yourChips = [];
 
+    constructor(props){
+        super(props);
+        this.state = {
+            showCc: false,
+            showBcc: false
+        }
+    }
+
     handleAddChip = (chip) => {
         this.yourChips.push(chip)
     };
 
     handleDeleteChip = (chip, index) => {
         this.yourChips.splice(index, 1)
+    };
+
+    showCc = () => {
+        this.setState({showCc: true})
+    };
+
+    showBcc = () => {
+        this.setState({showBcc: true})
     };
 
     render(){
@@ -28,7 +44,7 @@ class SendEmail extends Component {
                 <Card className='email-form'>
                     <CardHeader
                         className='email-form__header'
-                        title="Send email"
+                        title="Compose email"
                         titleTypographyProps={{color: 'inherit', align: 'left'}}
                     />
 
@@ -36,16 +52,33 @@ class SendEmail extends Component {
                         <div className='email-form__to-field'>
                             <TextField variant='outlined' label='To' className='text-field'/>
 
-                            <Tooltip title="Add Cc recipients" className="email-form__cc">
-                                <Typography variant={"body2"}>Cc</Typography>
-                            </Tooltip>
-                            <Tooltip title="Add Bcc recipients" className="email-form__bcc">
-                                <Typography variant={"body2"}>Bcc</Typography>
-                            </Tooltip>
+                            <div
+                                className="email-form__cc"
+                                onClick={this.showCc}>
+                                <Tooltip
+                                    title="Add Cc recipients"
+                                >
+                                    <Typography
+                                        variant={"body2"}>Cc
+                                    </Typography>
+                                </Tooltip>
+                            </div>
+
+                            <div onClick={this.showBcc}>
+                                <Tooltip
+                                    title="Add Bcc recipients"
+                                    className="email-form__bcc">
+                                    <Typography
+                                        variant={"body2"}>Bcc
+                                    </Typography>
+                                </Tooltip>
+                            </div>
+
                         </div>
                     </FormGroup>
 
-                    <FormGroup className='email-form__group'>
+
+                    {this.state.showCc && <FormGroup className='email-form__group'>
                         <ChipInput
                             value={this.yourChips}
                             onAdd={this.handleAddChip}
@@ -56,9 +89,10 @@ class SendEmail extends Component {
                             label='Cc'
                             fullWidthInput={true}
                         />
-                    </FormGroup>
+                    </FormGroup>}
 
-                    <FormGroup className='email-form__group'>
+
+                    {this.state.showBcc && <FormGroup className='email-form__group'>
                         <ChipInput
                             value={this.yourChips}
                             onAdd={this.handleAddChip}
@@ -69,7 +103,7 @@ class SendEmail extends Component {
                             label='Bcc'
                             fullWidthInput={true}
                         />
-                    </FormGroup>
+                    </FormGroup>}
 
                     <FormGroup className='email-form__group'>
                         <TextField variant='outlined' label='Subject' className='text-field'/>
@@ -80,7 +114,7 @@ class SendEmail extends Component {
                     </FormGroup>
 
                     <Button variant="contained" color="primary" className='email-form__submit'>
-                        Primary
+                        Send
                     </Button>
 
                 </Card>
