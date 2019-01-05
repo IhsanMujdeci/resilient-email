@@ -10,8 +10,6 @@ import Button from "@material-ui/core/Button/Button";
 import ChipInput from 'material-ui-chip-input'
 import classNames from  'classnames'
 import {TooltipButton} from "../../components/tooltip-button/tooltip-button.component";
-import * as snackBarActionTypes from "../../store/actions/snackbar.actions";
-// import * as emailActionTypes from '../../store/actions/email.actions'
 
 class SendEmail extends Component {
 
