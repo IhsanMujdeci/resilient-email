@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'typeface-roboto';
 import './App.css';
-import {Header} from "./components/header/header";
+import {HeaderComponent} from "./components/header/header.component";
 import SendEmail from "./containers/send-email/send-email.container";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -19,7 +19,7 @@ class App extends Component {
     return (
     <MuiThemeProvider theme={theme}>
       <div className="App">
-          <Header/>
+          <HeaderComponent/>
           <SendEmail/>
       </div>
     </MuiThemeProvider>
