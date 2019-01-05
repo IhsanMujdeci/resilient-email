@@ -51,12 +51,12 @@
   cursor: pointer;
 }
 
-.email-form--show {
+.email-form__group--show {
   max-height: 1000px !important;
   margin: 20px 20px 0 20px;
 }
 
-.email-form--hide {
+.email-form__group--hide {
   max-height: 0 !important;
   overflow-x: hidden;
   margin: 0 20px
