@@ -12,9 +12,12 @@ import classNames from  'classnames'
 import {TooltipButton} from "../../components/tooltip-button/tooltip-button.component";
 
 class SendEmail extends Component {
-    constructor(props){
-        super(props);
-    }
+
+    showHideClass = type =>
+        classNames({
+            'email-form__group--show': this.props[type],
+            'email-form__group--hide': !this.props[type]
+        });
 
     render(){
         return(
@@ -51,11 +54,7 @@ class SendEmail extends Component {
 
                         </div>
 
-                        <div className={classNames({
-                                'email-form__group--show': this.props.showCc,
-                                'email-form__group--hide': !this.props.showCc
-                            }
-                        )}>
+                        <div className={this.showHideClass('showCc')}>
                             <ChipInput
                                 value={this.props.cc}
                                 onAdd={(cc)=>this.props.onAddCc(cc)}
@@ -68,11 +67,7 @@ class SendEmail extends Component {
                             />
                         </div>
 
-                        <div className={classNames({
-                                'email-form__group--show': this.props.showBcc,
-                                'email-form__group--hide': !this.props.showBcc
-                            }
-                        )}>
+                        <div className={this.showHideClass('showBcc')}>
                             <ChipInput
                                 value={this.props.bcc}
                                 onAdd={(bcc) => this.props.onAddBcc(bcc)}

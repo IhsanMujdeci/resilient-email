@@ -67,9 +67,9 @@ const reducer = (state = initialState, action) => {
                     ...state.ui,
                     showBcc: true
                 }
-            }
+            };
+        default: return state
     }
-    return state
 };
 
 export default reducer
