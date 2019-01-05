@@ -28,7 +28,7 @@ class SendEmail extends Component {
 
                     <form className='email-form__group'>
 
-                        <div className='email-form__to-field text-field'>
+                        <div className='email-form__to-field'>
 
                             <TextField
                                 variant='outlined'
@@ -51,7 +51,7 @@ class SendEmail extends Component {
 
                         </div>
 
-                        <div className={classNames('text-field', {
+                        <div className={classNames({
                                 'email-form__group--show': this.props.showCc,
                                 'email-form__group--hide': !this.props.showCc
                             }
@@ -68,8 +68,7 @@ class SendEmail extends Component {
                             />
                         </div>
 
-
-                        <div className={classNames('text-field', {
+                        <div className={classNames({
                                 'email-form__group--show': this.props.showBcc,
                                 'email-form__group--hide': !this.props.showBcc
                             }
@@ -86,18 +85,17 @@ class SendEmail extends Component {
                             />
                         </div>
 
-
                         <TextField
                             variant='outlined'
                             label='Subject'
-                            className='text-field'/>
+                        />
 
                         <TextField
                             variant='outlined'
                             rows={4}
                             multiline
                             label='Body'
-                            className='text-field'/>
+                        />
 
                     </form>
 

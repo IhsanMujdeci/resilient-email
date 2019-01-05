@@ -19,10 +19,6 @@
   flex-direction: column;
 }
 
-.email-form__multiline-text {
-  height: 350px;
-}
-
 .email-form__to-field {
   display: flex;
   align-items: center;
@@ -37,10 +33,6 @@
   margin-top: 20px !important;
   margin-bottom: 30px !important;
   margin-left: 20px !important;
-}
-
-.chip-input {
-  height: 40px;
 }
 
 .email-form__cc {
