@@ -11,6 +11,7 @@ import ChipInput from 'material-ui-chip-input'
 import classNames from  'classnames'
 import {TooltipButton} from "../../components/tooltip-button/tooltip-button.component";
 import * as snackBarActionTypes from "../../store/actions/snackbar.actions";
+// import * as emailActionTypes from '../../store/actions/email.actions'
 
 class SendEmail extends Component {
 
@@ -37,6 +38,8 @@ class SendEmail extends Component {
                             <TextField
                                 variant='outlined'
                                 label='To'
+                                onChange={(e) => this.props.onChangeEmailForm('to', e.target.value)}
+                                value={this.props.to}
                             />
 
                             <TooltipButton
@@ -84,6 +87,8 @@ class SendEmail extends Component {
                         <TextField
                             variant='outlined'
                             label='Subject'
+                            onChange={(e) => this.props.onChangeEmailForm('subject', e.target.value)}
+                            value={this.props.subject}
                         />
 
                         <TextField
@@ -91,6 +96,8 @@ class SendEmail extends Component {
                             rows={4}
                             multiline
                             label='Body'
+                            onChange={(e) => this.props.onChangeEmailForm('body', e.target.value)}
+                            value={this.props.body}
                         />
 
                     </form>
@@ -99,7 +106,13 @@ class SendEmail extends Component {
                         variant="contained"
                         color="primary"
                         className='email-form__submit'
-                        onClick={() => this.props.onShowSnackBar("hey")}
+                        onClick={() => this.props.sendEmail(
+                            this.props.to,
+                            this.props.cc,
+                            this.props.bcc,
+                            this.props.subject,
+                            this.props.body
+                        )}
                     >
                         Send
                     </Button>
@@ -116,6 +129,9 @@ const mapStateToProps = ({email}) => ({
     showBcc: email.ui.showBcc,
     cc: email.form.cc,
     bcc: email.form.bcc,
+    to: email.form.to,
+    subject: email.form.subject,
+    body: email.form.body,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -125,7 +141,8 @@ const mapDispatchToProps = dispatch => ({
     onDeleteCc: (cc) => dispatch({type: emailActionTypes.DELETE_CC, payload: cc}),
     onAddBcc: (bcc) => dispatch({type: emailActionTypes.ADD_BCC, payload: bcc}),
     onDeleteBcc: (bcc) => dispatch({type: emailActionTypes.DELETE_BCC, payload: bcc}),
-    onShowSnackBar: (label) => dispatch({type: snackBarActionTypes.SHOW_SNACKBAR, payload:label})
+    sendEmail: (to, cc, bcc, subject, body) => dispatch(emailActionTypes.sendEmail(to, cc, bcc, subject, body)),
+    onChangeEmailForm: (key, value) => dispatch({type: emailActionTypes.CHANGE_EMAIL_TEXT, payload: {key, value}}),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendEmail)

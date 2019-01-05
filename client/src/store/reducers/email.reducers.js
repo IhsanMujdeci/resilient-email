@@ -2,6 +2,7 @@ const initialState = {
     ui:{
         showCc: false,
         showBcc: false,
+        disableSend: false
     },
     form:{
         to: [],
@@ -66,6 +67,14 @@ const reducer = (state = initialState, action) => {
                 ui:{
                     ...state.ui,
                     showBcc: true
+                }
+            };
+        case 'CHANGE_EMAIL_TEXT':
+            return{
+                ...state,
+                form:{
+                    ...state.form,
+                    [action.payload.key]: action.payload.value
                 }
             };
         default: return state

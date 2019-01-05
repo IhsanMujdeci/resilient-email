@@ -1,7 +1,7 @@
 import * as snackBarActionType from '../actions/snackbar.actions'
 
 const initialState = {
-    show: true,
+    show: false,
     label: ''
 };
 

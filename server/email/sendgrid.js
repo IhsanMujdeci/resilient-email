@@ -28,6 +28,10 @@ const Sendgrid = {
             body.personalizations.bcc = bcc.map(email => ({email}));
         }
 
+        console.log(body)
+        console.log(body.personalizations.cc)
+
+
         return http.post({
             url: this.sendUrl,
             body: body,
