@@ -1,5 +1,6 @@
+const path = require('path')
+require('dotenv').config(path.resolve(process.cwd(), 'example.env'));
 const { describe, it, before } = require('mocha');
-require('dotenv').config();
 const chai = require('chai');
 const request = require('supertest');
 const mailgunNock = require('../../email/mailgun_nock');
@@ -8,7 +9,6 @@ const nock = require('nock');
 const routes = require('../router');
 const server = require('../../http/server');
 const app = require('express')();
-const should = chai.should();
 
 before(function () {
     server.applyConfig(app);

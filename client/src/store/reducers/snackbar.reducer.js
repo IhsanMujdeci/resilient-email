@@ -1,13 +1,23 @@
+import * as snackBarActionType from '../actions/snackbar.actions'
+
 const initialState = {
-    show: false
+    show: true,
+    label: ''
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
-        case 'SHOW':
+        case snackBarActionType.SHOW_SNACKBAR:
             return {
                 ...state,
-                show: true
+                show: true,
+                label: action.payload
+            };
+        case snackBarActionType.HIDE_SNACKBAR:
+            return {
+                ...state,
+                show: false,
+                label: ''
             };
         default: return state
     }

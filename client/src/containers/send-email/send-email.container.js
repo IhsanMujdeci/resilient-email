@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button/Button";
 import ChipInput from 'material-ui-chip-input'
 import classNames from  'classnames'
 import {TooltipButton} from "../../components/tooltip-button/tooltip-button.component";
+import * as snackBarActionTypes from "../../store/actions/snackbar.actions";
 
 class SendEmail extends Component {
 
@@ -94,7 +95,12 @@ class SendEmail extends Component {
 
                     </form>
 
-                    <Button variant="contained" color="primary" className='email-form__submit'>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className='email-form__submit'
+                        onClick={() => this.props.onShowSnackBar("hey")}
+                    >
                         Send
                     </Button>
 
@@ -118,7 +124,8 @@ const mapDispatchToProps = dispatch => ({
     onAddCc: (cc) => dispatch({type: emailActionTypes.ADD_CC, payload: cc}),
     onDeleteCc: (cc) => dispatch({type: emailActionTypes.DELETE_CC, payload: cc}),
     onAddBcc: (bcc) => dispatch({type: emailActionTypes.ADD_BCC, payload: bcc}),
-    onDeleteBcc: (bcc) => dispatch({type: emailActionTypes.DELETE_BCC, payload: bcc})
+    onDeleteBcc: (bcc) => dispatch({type: emailActionTypes.DELETE_BCC, payload: bcc}),
+    onShowSnackBar: (label) => dispatch({type: snackBarActionTypes.SHOW_SNACKBAR, payload:label})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendEmail)
