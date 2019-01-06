@@ -9,6 +9,7 @@ const nock = require('nock');
 const routes = require('../router');
 const server = require('../../http/server');
 const app = require('express')();
+const should = chai.should();
 
 before(function () {
     server.applyConfig(app);

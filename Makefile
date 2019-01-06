@@ -12,3 +12,6 @@ dev-client:
 
 dev:
 	npx concurrently --kill-others-on-fail "make dev-server" "make dev-client"
+
+test-server:
+	cd server && npm test

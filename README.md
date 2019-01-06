@@ -1,6 +1,6 @@
 # Resilient Email Sender
 
-This projects lets you send emails using a web ui form
+This projects lets you send emails using a web ui form.
 The backend initially tries to send email via sendgrid and falls back to mail gun.
 
 This project is a react front end with express back end
@@ -13,8 +13,6 @@ Run `make install-dependencies` before trying to run either the client or the se
 ## Available Scripts
 
 Before you start development please run `make install-dependencies` to automatically run npm install for the client and server
-
-In the project directory, you can run:
 
 ### `make install-dependencies`
 Installs dependencies for the client and the server, run this before running anything else
@@ -34,3 +32,7 @@ If you wish to run in production make sure to set `NODE_ENV` environment variabl
 ## `dev-client`
 
 Runs the client in development mode, live reloading included thanks to `create-react-app`
+
+## `test-server`
+
+Runs npm test in the /server directory, please add test to from end and make a `make test` that runs test for server and client
