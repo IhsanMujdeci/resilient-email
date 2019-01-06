@@ -23,16 +23,16 @@ Runs the client in dev mode and starts the server.
 
 Use this for development purposes only, if you wish to run production first build the react app and modify express to serve static html
 
-## `dev-server`
+### `dev-server`
 
 Runs the client in non production ready mode, no live reloading included, please add if you wish.
 
 If you wish to run in production make sure to set `NODE_ENV` environment variable to `production`
 
-## `dev-client`
+### `dev-client`
 
 Runs the client in development mode, live reloading included thanks to `create-react-app`
 
-## `test-server`
+### `test-server`
 
 Runs npm test in the /server directory, please add test to from end and make a `make test` that runs test for server and client
