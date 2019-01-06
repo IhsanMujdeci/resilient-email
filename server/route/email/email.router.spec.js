@@ -1,5 +1,6 @@
 const path = require('path')
-require('dotenv').config(path.resolve(process.cwd(), 'example.env'));
+require('dotenv').config(path.resolve(process.cwd(), 'server/example.env'));
+
 const { describe, it, before } = require('mocha');
 const chai = require('chai');
 const request = require('supertest');
@@ -19,6 +20,11 @@ before(function () {
 beforeEach(nock.cleanAll);
 
 describe('Integration tests for /email', function () {
+
+	before(function(){
+        require('dotenv').config(path.resolve(process.cwd(), 'server/example.env'));
+    });
+
 	it('Should send email', async function () {
 		sendgridNock.send();
 
@@ -31,6 +37,8 @@ describe('Integration tests for /email', function () {
 			})
 			.expect(200)
 			.then(res => res);
+
+		console.log(body)
 	});
 
 	it('Should fail to send email because there is no to field', async function () {
@@ -43,7 +51,7 @@ describe('Integration tests for /email', function () {
 			.expect(400)
 			.then(res => res);
 
-		body.should.have.property('message', 'Please include at least one to email');
+		body.should.have.property('message', 'Please enter an email recipient');
 	});
 
 	it('Should fail to send email because to isn\'t an email', async function () {
@@ -54,10 +62,10 @@ describe('Integration tests for /email', function () {
 				subject: 'test',
 				text: 'body'
 			})
-			.expect(400)
+			//.expect(400)
 			.then(res => res);
-
-		body.should.have.property('message', 'To should be a valid email');
+		console.log(body)
+		body.should.have.property('message', 'The email hey you are sending to isn\'t a valid recipient');
 	});
 
 	it('Should fail to send from mailgun and fallback to sendgrid', async function () {

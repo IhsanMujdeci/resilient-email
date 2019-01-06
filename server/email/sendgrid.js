@@ -3,6 +3,10 @@ const http = require('../http/request');
 const privateKey = process.env.SENDGRID_PRIVATE_KEY;
 const url = process.env.SENDGRID_URL;
 const domain = process.env.SENDGRID_DOMAIN;
+
+console.log("SENDGRID")
+console.log(url, domain)
+
 const path = {
 	sendMail: '/mail/send'
 };

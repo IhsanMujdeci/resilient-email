@@ -5,15 +5,15 @@ async function send (req, res, next) {
 	try {
 		const schema = Joi.object().keys({
 			to: Joi.array().items(
-				Joi.string().email().required().label('To should be a valid email')
-			).required().label('Please include at least one to email'),
+				Joi.string().email().required().label('The email ${value} you are sending to isn\'t a valid recipient')
+			).required().label('Please enter an email recipient'),
 			subject: Joi.string().required().label('Please include a subject'),
 			text: Joi.string().required().label('Please include some text'),
 			cc: Joi.array().items(
-				Joi.string().email().label('Please include valid email in cc')
+				Joi.string().email().label('The email ${value} in cc is invalid')
 			),
 			bcc: Joi.array().items(
-				Joi.string().email().label('Please include valid email in bcc')
+				Joi.string().email().label('The email ${value} in cc is invalid')
 			)
 		});
 
