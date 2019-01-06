@@ -1,11 +1,11 @@
-## Resilient Email Sender
+# Resilient Email Sender
 
 This projects lets you send emails using a web ui form
 The backend initially tries to send email via sendgrid and falls back to mail gun.
 
 This project is a react front end with express back end
 
-### Before you start
+## Before you start
 Populate your own .env file in the /server directory, it has been omitted from the public git repo for security reasons.
 
 Run `make install-dependencies` before trying to run either the client or the server
