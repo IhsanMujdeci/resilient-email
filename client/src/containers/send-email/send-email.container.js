@@ -19,6 +19,8 @@ class SendEmail extends Component {
             'email-form__group--hide': !this.props[type]
         });
 
+    chipKeyCodes = [13, 32, 9];
+
     render(){
         return(
             <>
@@ -33,23 +35,27 @@ class SendEmail extends Component {
 
                         <div className='email-form__to-field'>
 
-                            <TextField
+                            <ChipInput
                                 variant='outlined'
                                 label='To'
-                                onChange={(e) => this.props.onChangeEmailForm('to', e.target.value)}
+                                onAdd={ value => this.props.onAddArray('to', value) }
+                                onDelete={ value => this.props.onDeleteArray('to', value) }
                                 value={this.props.to}
+                                fullWidthInput={true}
+                                newChipKeyCodes={this.chipKeyCodes}
+                                blurBehavior={'add'}
                             />
 
                             <TooltipButton
                                 className="email-form__cc"
-                                onClick={this.props.onShowCc}
+                                onClick={() => this.props.showUi('showCc')}
                                 title="Add Cc recipients"
                                 label="Cc"
                             />
 
                             <TooltipButton
                                 className="email-form__bcc"
-                                onClick={this.props.onShowBcc}
+                                onClick={() => this.props.showUi('showBcc')}
                                 title="Add Bcc recipients"
                                 label="Bcc"
                             />
@@ -59,33 +65,35 @@ class SendEmail extends Component {
                         <div className={this.showHideClass('showCc')}>
                             <ChipInput
                                 value={this.props.cc}
-                                onAdd={(cc)=>this.props.onAddCc(cc)}
-                                onDelete={(cc)=>this.props.onDeleteCc(cc)}
+                                onAdd={ value => this.props.onAddArray('cc', value) }
+                                onDelete={ value => this.props.onDeleteArray('cc', value) }
                                 variant='outlined'
-                                newChipKeyCodes={[13, 32]}
+                                newChipKeyCodes={this.chipKeyCodes}
                                 fullWidth
                                 label='Cc'
                                 fullWidthInput={true}
+                                blurBehavior={'add'}
                             />
                         </div>
 
                         <div className={this.showHideClass('showBcc')}>
                             <ChipInput
                                 value={this.props.bcc}
-                                onAdd={(bcc) => this.props.onAddBcc(bcc)}
-                                onDelete={(bcc) => this.props.onDeleteBcc(bcc)}
+                                onAdd={ value => this.props.onAddArray('bcc', value)}
+                                onDelete={ value => this.props.onDeleteArray('bcc', value) }
                                 variant='outlined'
-                                newChipKeyCodes={[13, 32]}
+                                newChipKeyCodes={this.chipKeyCodes}
                                 fullWidth
                                 label='Bcc'
                                 fullWidthInput={true}
+                                blurBehavior={'add'}
                             />
                         </div>
 
                         <TextField
                             variant='outlined'
                             label='Subject'
-                            onChange={(e) => this.props.onChangeEmailForm('subject', e.target.value)}
+                            onChange={(e) => this.props.onChangeText('subject', e.target.value)}
                             value={this.props.subject}
                         />
 
@@ -94,7 +102,7 @@ class SendEmail extends Component {
                             rows={4}
                             multiline
                             label='Body'
-                            onChange={(e) => this.props.onChangeEmailForm('body', e.target.value)}
+                            onChange={(e) => this.props.onChangeText('body', e.target.value)}
                             value={this.props.body}
                         />
 
@@ -111,6 +119,7 @@ class SendEmail extends Component {
                             this.props.subject,
                             this.props.body
                         )}
+                        disabled={!this.props.enableSend}
                     >
                         Send
                     </Button>
@@ -130,17 +139,15 @@ const mapStateToProps = ({email}) => ({
     to: email.form.to,
     subject: email.form.subject,
     body: email.form.body,
+    enableSend: email.ui.enableSend
 });
 
 const mapDispatchToProps = dispatch => ({
-    onShowCc: () => dispatch({type: emailActionTypes.SHOW_CC}),
-    onShowBcc: () => dispatch({type: emailActionTypes.SHOW_BCC}),
-    onAddCc: (cc) => dispatch({type: emailActionTypes.ADD_CC, payload: cc}),
-    onDeleteCc: (cc) => dispatch({type: emailActionTypes.DELETE_CC, payload: cc}),
-    onAddBcc: (bcc) => dispatch({type: emailActionTypes.ADD_BCC, payload: bcc}),
-    onDeleteBcc: (bcc) => dispatch({type: emailActionTypes.DELETE_BCC, payload: bcc}),
     sendEmail: (to, cc, bcc, subject, body) => dispatch(emailActionTypes.sendEmail(to, cc, bcc, subject, body)),
-    onChangeEmailForm: (key, value) => dispatch({type: emailActionTypes.CHANGE_EMAIL_TEXT, payload: {key, value}}),
+    showUi: key => dispatch(emailActionTypes.showUi(key)),
+    onChangeText: (key, value) => dispatch(emailActionTypes.onChangeText(key, value)),
+    onAddArray: (key, value) => dispatch(emailActionTypes.onAddArray(key, value)),
+    onDeleteArray: (key, value) => dispatch(emailActionTypes.onDeleteArray(key, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendEmail)

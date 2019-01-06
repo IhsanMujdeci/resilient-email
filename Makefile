@@ -1,12 +1,14 @@
 default: dev
 
-dev:
-	npx concurrently --kill-others-on-fail "make dev-server" "make dev-client"
+install-dependencies:
+	cd client && npm install
+	cd server && npm install
 
 dev-server:
-	cd server &&
-	npm start
+	cd server && npm start
 
 dev-client:
-	cd client &&
-	npm start
+	cd client && npm start
+
+dev:
+	npx concurrently --kill-others-on-fail "make dev-server" "make dev-client"

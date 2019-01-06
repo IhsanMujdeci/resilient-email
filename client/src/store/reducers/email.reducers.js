@@ -1,8 +1,10 @@
+import * as emailActions from '../actions/email.actions'
+
 const initialState = {
     ui:{
         showCc: false,
         showBcc: false,
-        disableSend: false
+        enableSend: true
     },
     form:{
         to: [],
@@ -15,66 +17,45 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_CC': {
-            return {
-                ...state,
-                form:{
-                    ...state.form,
-                    cc: state.form.cc.concat(action.payload)
-                }
-            }
-        }
-        case 'DELETE_CC': {
-            const updatedCC = state.form.cc.filter(x => x !== action.payload);
-            return {
-                ...state,
-                form:{
-                    ...state.form,
-                    cc: updatedCC
-                }
-            }
-        }
-        case 'ADD_BCC': {
-            return {
-                ...state,
-                form:{
-                    ...state.form,
-                    bcc: state.form.bcc.concat(action.payload)
-                }
-            }
-        }
-        case 'DELETE_BCC': {
-            const updatedBcc = state.form.bcc.filter(x => x !== action.payload);
-            return {
-                ...state,
-                form:{
-                    ...state.form,
-                    bcc: updatedBcc
-                }
-            }
-        }
-        case 'SHOW_CC':
-            return {
+        case emailActions.SHOW_UI:
+            return{
                 ...state,
                 ui:{
                     ...state.ui,
-                    showCc: true
+                    [action.payload.key]: true
                 }
             };
-        case 'SHOW_BCC':
-            return {
+        case emailActions.DISABLE_UI:
+            return{
                 ...state,
                 ui:{
                     ...state.ui,
-                    showBcc: true
+                    [action.payload.key]: false
                 }
             };
-        case 'CHANGE_EMAIL_TEXT':
+        case emailActions.CHANGE_EMAIL_TEXT:
             return{
                 ...state,
                 form:{
                     ...state.form,
                     [action.payload.key]: action.payload.value
+                }
+            };
+        case emailActions.ADD_EMAIL_ARRAY:
+            return {
+                ...state,
+                form:{
+                    ...state.form,
+                    [action.payload.key]: state.form[action.payload.key].concat(action.payload.value)
+                }
+            };
+        case emailActions.DELETE_EMAIL_ARRAY:
+            const updatedArray = state.form[action.payload.key].filter(x => x !== action.payload.value);
+            return {
+                ...state,
+                form:{
+                    ...state.form,
+                    [action.payload.key]: updatedArray
                 }
             };
         default: return state

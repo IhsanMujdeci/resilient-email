@@ -9,28 +9,25 @@ const path = {
 
 const Sendgrid = {
     send(to = [], subject = '', text = '', cc = [], bcc = []){
-        const body = {
+        let body = {
             from: {email: domain},
             personalizations: [
                 {
-                    to: to.map(email => ({email}))
+                    to: to.map(email => ({email})),
+                    subject: subject,
                 }
             ],
-            subject: subject,
+
             content: [{type: 'text/plain', value: text}]
         };
 
         if (cc && cc.length) {
-            body.personalizations.cc = cc.map(email => ({email}));
+            body.personalizations[0].cc = cc.map(email => ({email}));
         }
 
         if (bcc && bcc.length) {
-            body.personalizations.bcc = bcc.map(email => ({email}));
+            body.personalizations[0].bcc = bcc.map(email => ({email}));
         }
-
-        console.log(body)
-        console.log(body.personalizations.cc)
-
 
         return http.post({
             url: this.sendUrl,
