@@ -112,13 +112,7 @@ class SendEmail extends Component {
                         variant="contained"
                         color="primary"
                         className='email-form__submit'
-                        onClick={() => this.props.sendEmail(
-                            this.props.to,
-                            this.props.cc,
-                            this.props.bcc,
-                            this.props.subject,
-                            this.props.body
-                        )}
+                        onClick={() => this.props.sendEmail()}
                         disabled={!this.props.enableSend}
                     >
                         Send
@@ -143,7 +137,7 @@ const mapStateToProps = ({email}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendEmail: (to, cc, bcc, subject, body) => dispatch(emailActionTypes.sendEmail(to, cc, bcc, subject, body)),
+    sendEmail: () => dispatch(emailActionTypes.sendEmail()),
     showUi: key => dispatch(emailActionTypes.showUi(key)),
     onChangeText: (key, value) => dispatch(emailActionTypes.onChangeText(key, value)),
     onAddArray: (key, value) => dispatch(emailActionTypes.onAddArray(key, value)),

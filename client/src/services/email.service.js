@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const send = async (to,  cc, bcc, subject, body) =>{
+export const send = async ({to,  cc, bcc, subject, body}) =>{
     try {
         const emailRequest = await axios.post('http://localhost:3001/email/send', {
             to: to,

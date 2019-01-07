@@ -43,15 +43,15 @@ export const onDeleteArray = (key, value) => ({
     payload: {key, value}
 });
 
-export const sendEmail = (to,  cc, bcc, subject, body) => {
+export const sendEmail = () => {
 
-    return async function(dispatch) {
+    return async function(dispatch, getState) {
 
         dispatch(disableSend());
         dispatch(showSnackBar('Sending email'));
 
         try{
-            const sentEmail = await Email.send(to,  cc, bcc, subject, body);
+            const sentEmail = await Email.send(getState().email.form);
             dispatch(showSnackBar(sentEmail))
         }
         catch(err){
