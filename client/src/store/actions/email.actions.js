@@ -14,7 +14,7 @@ export const disableSend = () => ({
     payload: {
         key: 'enableSend'
     }
-})
+});
 
 export const enableSend = () => ({
     type: SHOW_UI,
@@ -28,21 +28,20 @@ export const showUi = key => ({
     payload: { key }
 });
 
-
 export const onChangeText = (key, value) => ({
     type: CHANGE_EMAIL_TEXT,
     payload: {key, value}
-})
+});
 
 export const onAddArray = (key, value) => ({
     type: ADD_EMAIL_ARRAY,
     payload: {key, value}
-})
+});
 
 export const onDeleteArray = (key, value) => ({
     type: DELETE_EMAIL_ARRAY,
     payload: {key, value}
-})
+});
 
 export const sendEmail = (to,  cc, bcc, subject, body) => {
 
@@ -62,4 +61,5 @@ export const sendEmail = (to,  cc, bcc, subject, body) => {
             dispatch(enableSend())
         }
     }
+
 };
